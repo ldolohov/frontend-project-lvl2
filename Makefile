@@ -2,7 +2,7 @@ install:
 				npm ci
 publish:
 				npm publish --dry-run
-genDiff:
+gendiff:
 				npm link
 lint:
 				npx eslint .
