@@ -6,3 +6,5 @@ gendiff:
 				npm link
 lint:
 				npx eslint .
+test:
+				npm test
