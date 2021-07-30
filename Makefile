@@ -1,5 +1,5 @@
 install:
-				npm ci
+				npm install
 publish:
 				npm publish --dry-run
 gendiff:
@@ -8,3 +8,5 @@ lint:
 				npx eslint .
 test:
 				npm test
+test-coverage:
+				npm run test -- --coverage --coverageProvider=v8
