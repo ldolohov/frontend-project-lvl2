@@ -6,8 +6,14 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/19e1b3526f5e425f4809/test_coverage)](https://codeclimate.com/github/ldolohov/frontend-project-lvl2/test_coverage)
 
 ## Example of app working
-### Find the difference of 2 json files
+### Find the difference of 2 plain json files
 [![asciicast](https://asciinema.org/a/428852.svg)](https://asciinema.org/a/428852)
 
-### Find the difference of 2 yaml files
+### Find the difference of 2 plain yaml files
 [![asciicast](https://asciinema.org/a/428856.svg)](https://asciinema.org/a/428856)
+
+### Find the difference of 2 nested json files
+[![asciicast](https://asciinema.org/a/eXp7Q3RQzUPsZ7EeHaDuTEAcJ.svg)](https://asciinema.org/a/eXp7Q3RQzUPsZ7EeHaDuTEAcJ)
+
+### Find the difference of 2 nested yml files
+[![asciicast](https://asciinema.org/a/WYq9BV3XPPKfjy0cW8LVEnB14.svg)](https://asciinema.org/a/WYq9BV3XPPKfjy0cW8LVEnB14)
