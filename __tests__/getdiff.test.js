@@ -1,74 +1,37 @@
 import { expect, test } from '@jest/globals';
-import makeDiff from '../lib/index.js';
+import { fileURLToPath } from 'url';
+import path, { dirname } from 'path';
+import fs from 'fs';
+import genDiff from '../lib/index.js';
 
-const testResultStylish = `{
-    common: {
-      + follow: false
-        setting1: Value 1
-      - setting2: 200
-      - setting3: true
-      + setting3: null
-      + setting4: blah blah
-      + setting5: {
-            key5: value5
-        }
-        setting6: {
-            doge: {
-              - wow: 
-              + wow: so much
-            }
-            key: value
-          + ops: vops
-        }
-    }
-    group1: {
-      - baz: bas
-      + baz: bars
-        foo: bar
-      - nest: {
-            key: value
-        }
-      + nest: str
-    }
-  - group2: {
-        abc: 12345
-        deep: {
-            id: 45
-        }
-    }
-  + group3: {
-        deep: {
-            id: {
-                number: 45
-            }
-        }
-        fee: 100500
-    }
-}`;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
-const testResultPlain = `Property 'common.follow' was added with value: false
-Property 'common.setting2' was removed
-Property 'common.setting3' was updated. From true to null
-Property 'common.setting4' was added with value: 'blah blah'
-Property 'common.setting5' was added with value: [complex value]
-Property 'common.setting6.doge.wow' was updated. From '' to 'so much'
-Property 'common.setting6.ops' was added with value: 'vops'
-Property 'group1.baz' was updated. From 'bas' to 'bars'
-Property 'group1.nest' was updated. From [complex value] to 'str'
-Property 'group2' was removed
-Property 'group3' was added with value: [complex value]`;
+const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 
-test('basic functional of json', () => {
-  const expectResult = makeDiff('file1.json', 'file2.json');
-  expect(expectResult).toMatch(testResultStylish);
+const readFile = (filename) => fs.readFileSync(getFixturePath(`${filename}.txt`), 'utf-8');
+
+const json = readFile('json');
+const plain = readFile('plain');
+const stylish = readFile('stylish');
+
+test('stylish formatter', () => {
+  const expectResultJSON = genDiff('file1.json', 'file2.json');
+  const expectResultYML = genDiff('file1.yml', 'file2.yml');
+  expect(expectResultJSON).toEqual(stylish);
+  expect(expectResultYML).toEqual(stylish);
 });
 
-test('basic functional of yml', () => {
-  const expectResult = makeDiff('file1.yml', 'file2.yml');
-  expect(expectResult).toMatch(testResultStylish);
+test('plain formatter', () => {
+  const expectResultJSON = genDiff('file1.json', 'file2.json', 'plain');
+  const expectResultYML = genDiff('file1.yml', 'file2.yml', 'plain');
+  expect(expectResultJSON).toEqual(plain);
+  expect(expectResultYML).toEqual(plain);
 });
 
-test('basic functional of json plain formatter', () => {
-  const expectResult = makeDiff('file1.json', 'file2.json', 'plain');
-  expect(expectResult).toMatch(testResultPlain);
+test('json formatter', () => {
+  const expectResultJSON = genDiff('file1.json', 'file2.json', 'json');
+  const expectResultYML = genDiff('file1.yml', 'file2.yml', 'json');
+  expect(expectResultJSON).toEqual(json);
+  expect(expectResultYML).toEqual(json);
 });
