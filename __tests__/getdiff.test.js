@@ -1,7 +1,7 @@
 import { expect, test } from '@jest/globals';
 import makeDiff from '../lib/index.js';
 
-const testResult = `{
+const testResultStylish = `{
     common: {
       + follow: false
         setting1: Value 1
@@ -46,12 +46,32 @@ const testResult = `{
     }
 }`;
 
+const testResultPlain = 
+`Property 'common.follow' was added with value: false
+Property 'common.setting2' was removed
+Property 'common.setting3' was updated. From true to null
+Property 'common.setting4' was added with value: 'blah blah'
+Property 'common.setting5' was added with value: [complex value]
+Property 'common.setting6.doge.wow' was updated. From '' to 'so much'
+Property 'common.setting6.ops' was added with value: 'vops'
+Property 'group1.baz' was updated. From 'bas' to 'bars'
+Property 'group1.nest' was updated. From [complex value] to 'str'
+Property 'group2' was removed
+Property 'group3' was added with value: [complex value]`
+
 test('basic functional of json', () => {
   const expectResult = makeDiff('file1.json', 'file2.json');
-  expect(expectResult).toMatch(testResult);
+  expect(expectResult).toMatch(testResultStylish);
 });
 
 test('basic functional of yml', () => {
   const expectResult = makeDiff('file1.yml', 'file2.yml');
-  expect(expectResult).toMatch(testResult);
+  expect(expectResult).toMatch(testResultStylish);
 });
+
+test('basic functional of json plain formatter', () => {
+    const expectResult = makeDiff('file1.json', 'file2.json', 'plain');
+    expect(expectResult).toMatch(testResultPlain);
+  });
+
+
