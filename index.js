@@ -15,6 +15,6 @@ const genDiff = (path1, path2, formatName = 'stylish') => {
   const data2 = parse(pathContent2, getFormat(path2));
   const diffTree = getDiffTree(data1, data2);
   return format(diffTree, formatName);
-}
+};
 
 export default genDiff;
