@@ -4,7 +4,7 @@ import format from './lib/formatter/index.js';
 import getDiffTree from './lib/getdiff.js';
 import parse from './lib/parsers.js';
 
-const getFullPath = (filepath) => path.resolve(process.cwd(), `__fixtures__/${filepath}`);
+const getFullPath = (filepath) => path.resolve(process.cwd(), `${filepath}`);
 const readFile = (filepath) => fs.readFileSync(getFullPath(filepath), 'utf-8');
 const getFormat = (filepath) => path.extname(filepath).slice(1);
 
