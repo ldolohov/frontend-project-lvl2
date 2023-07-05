@@ -8,7 +8,7 @@ const getFullPath = (filePath) => path.resolve(process.cwd(), filePath).trim();
 const readFile = (filepath) => fs.readFileSync(getFullPath(filepath), 'utf-8');
 const getFormat = (filepath) => path.extname(filepath).slice(1);
 
-const genDiff = (path1, path2, formatName = 'stylish') => {
+const gendiff = (path1, path2, formatName = 'stylish') => {
   const pathContent1 = readFile(path1);
   const pathContent2 = readFile(path2);
   const data1 = parse(pathContent1, getFormat(path1));
@@ -17,4 +17,4 @@ const genDiff = (path1, path2, formatName = 'stylish') => {
   return format(diffTree, formatName);
 };
 
-export default genDiff;
+export default gendiff;

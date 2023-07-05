@@ -4,7 +4,6 @@
   "type": "module",
   "description": "[![Actions Status](https://github.com/ldolohov/frontend-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/ldolohov/frontend-project-lvl2/actions)",
   "main": "./index.js",
-  "bin": "./bin/gendiff.js",
   "scripts": {
     "test": "npx jest"
   },
@@ -23,6 +22,9 @@
     "commander": "^7.2.0",
     "js-yaml": "^3.14.1",
     "lodash": "^4.17.21"
+  },
+  "bin": {
+    "gendiff": "./bin/gendiff.js"
   },
   "devDependencies": {
     "eslint": "^7.31.0",
