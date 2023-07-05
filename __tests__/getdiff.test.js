@@ -2,7 +2,7 @@ import { fileURLToPath } from 'url';
 import { expect, test } from '@jest/globals';
 import fs from 'fs';
 import path, { dirname } from 'path';
-import genDiff from '../index.js';
+import gendiff from '../src/index.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -16,22 +16,22 @@ const plain = readFile('plain');
 const stylish = readFile('stylish');
 
 test('stylish formatter', () => {
-  const expectResultJSON = genDiff('__fixtures__/file1.json', '__fixtures__/file2.json');
-  const expectResultYML = genDiff('__fixtures__/file1.yml', '__fixtures__/file2.yml');
+  const expectResultJSON = gendiff('__fixtures__/file1.json', '__fixtures__/file2.json');
+  const expectResultYML = gendiff('__fixtures__/file1.yml', '__fixtures__/file2.yml');
   expect(expectResultJSON).toEqual(stylish);
   expect(expectResultYML).toEqual(stylish);
 });
 
 test('plain formatter', () => {
-  const expectResultJSON = genDiff('__fixtures__/file1.json', '__fixtures__/file2.json', 'plain');
-  const expectResultYML = genDiff('__fixtures__/file1.yml', '__fixtures__/file2.yml', 'plain');
+  const expectResultJSON = gendiff('__fixtures__/file1.json', '__fixtures__/file2.json', 'plain');
+  const expectResultYML = gendiff('__fixtures__/file1.yml', '__fixtures__/file2.yml', 'plain');
   expect(expectResultJSON).toEqual(plain);
   expect(expectResultYML).toEqual(plain);
 });
 
 test('json formatter', () => {
-  const expectResultJSON = genDiff('__fixtures__/file1.json', '__fixtures__/file2.json', 'json');
-  const expectResultYML = genDiff('__fixtures__/file1.yml', '__fixtures__/file2.yml', 'json');
+  const expectResultJSON = gendiff('__fixtures__/file1.json', '__fixtures__/file2.json', 'json');
+  const expectResultYML = gendiff('__fixtures__/file1.yml', '__fixtures__/file2.yml', 'json');
   expect(expectResultJSON).toEqual(json);
   expect(expectResultYML).toEqual(json);
 });

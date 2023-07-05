@@ -1,8 +1,8 @@
 import path from 'path';
 import fs from 'fs';
-import format from './lib/formatter/index.js';
-import getDiffTree from './lib/getdiff.js';
-import parse from './lib/parsers.js';
+import format from './formatter/index.js';
+import getDiffTree from './getdiff.js';
+import parse from './parsers.js';
 
 const getFullPath = (filePath) => path.resolve(process.cwd(), filePath).trim();
 const readFile = (filepath) => fs.readFileSync(getFullPath(filepath), 'utf-8');
